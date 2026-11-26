@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --primary-soft: #EEF2FF;
+  --primary-glow: rgba(79, 70, 229, 0.35);
+  --accent: #F59E0B;
+  --accent-soft: #FEF3C7;
+  --sidebar-bg: #161433;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  font-family: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  background-color: #F4F6FB;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Slim Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); }
+.sidebar-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* Pipeline Chevron Ribbon */
+.chevron-first { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); }
+.chevron-mid   { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%); }
+.chevron-last  { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%); }
+
+/* Drag-and-Drop States */
+.dnd-dragging { opacity: 0.45; transform: scale(0.98); }
+.dnd-dropzone-active {
+  background-color: var(--primary-soft) !important;
+  outline: 2px dashed var(--primary);
+  outline-offset: -2px;
+  border-radius: 14px;
+}
+
+/* Crisp Corporate SaaS Micro-Interactions */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-view { animation: fadeSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.stagger-1 { animation: fadeSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.03s both; }
+.stagger-2 { animation: fadeSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.07s both; }
+.stagger-3 { animation: fadeSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.11s both; }
+.stagger-4 { animation: fadeSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+
+.card-lift {
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  border-color: rgba(79, 70, 229, 0.25);
+}
+
+.svg-ring-progress { transition: stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.drawer-slide { transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1); }
+
+@media print {
+  aside, header, #softphone-widget, #toast-container { display: none !important; }
+  main { overflow: visible !important; height: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-view, .stagger-1, .stagger-2, .stagger-3, .stagger-4 { animation: none; }
+}
